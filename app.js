@@ -14,39 +14,15 @@ app.use(express.json());
 const users = [
     {
         uid: 1,
-        name: "Wellington Wagner",
-        email: "well@example.com",
-        password: "senha123",
+        name: "Emanuel Freitas",
+        email: "emanuel@example.com",
+        password: "emanuel123",
     },
     {
         uid: 2,
-        name: "Maria Clara",
-        email: "maria.clara@example.com",
-        password: "senha456",
-    },
-    {
-        uid: 3,
-        name: "João Gabriel",
-        email: "joao.gabriel@example.com",
-        password: "senha789",
-    },
-    {
-        uid: 4,
-        name: "Ana Luiza",
-        email: "ana.luiza@example.com",
-        password: "senha321",
-    },
-    {
-        uid: 5,
-        name: "Carlos Eduardo",
-        email: "carlos.eduardo@example.com",
-        password: "senha654",
-    },
-    {
-        uid: 6,
-        name: "Beatriz Santos",
-        email: "beatriz.santos@example.com",
-        password: "senha987",
+        name: "Ariana Grande",
+        email: "ariana.grande@example.com",
+        password: "socorror123",
     },
 ];
 
@@ -182,6 +158,6 @@ const server = app.listen(3000, "0.0.0.0", () => {
     const host = server.address().address;
     const port = server.address().port;
     console.log(
-        `Aplicação WesleyTech Store está rodando no endereço IP ${host} e na porta ${port}`,
+        `Aplicação Emanuel Store está rodando no endereço IP ${host} e na porta ${port}`,
     );
 });

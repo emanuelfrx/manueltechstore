@@ -1,10 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Moderustic:wght@300..800&display=swap');
+
 
 * {
     box-sizing: border-box;
 }
 
 body {
+    max-width: 100vw;
+    height:100vh;
     line-height: 1.7em;
     font-size: 1.1em;
     margin: 0;
@@ -15,13 +18,19 @@ body {
 }
 
 header, footer {
-    background: #afc9e4;
+    background: #b42d2d;
     text-align: center;
     padding: 1em 0;
+    color:white;
 }
-
+footer{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: auto;
+}
 .pure-menu-link {
-    color: #036794;
+    color: #960303;
 }
 
 header .pure-menu, footer .footer-content {
@@ -34,13 +43,20 @@ header a, footer a {
 }
 
 main {
-    max-width: 800px;
+  
     margin: 2em auto;
+
     padding: 0 1em;
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+     justify-content: center;
+   
 }
 
+
 .pure-form input[type] {
-    border: 2px solid #ddd;
+    border: 2px solid #934d4d;
     box-shadow: none;
     font-size: 100%;
     width: 100%;
@@ -49,16 +65,18 @@ main {
 }
 
 .pure-button {
-    background-color: #1f8dd6;
+    background-color: #d61f1f;
     color: white;
     padding: 0.5em 2em;
     border-radius: 5px;
     text-decoration: none;
+    width:40%;
+   
 }
 
 .pure-button-primary {
-    background: white;
-    color: #1f8dd6;
+    background: #c46e6e;
+    color: white;
     border-radius: 5px;
     font-size: 100%;
 }
