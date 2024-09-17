@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  .content
+    h1 Bem-vindo à WesleyTech Store
+
+    // Seção de Login
+    .login-section
+      h2 Login
+      form.pure-form.pure-form-stacked(id="loginForm")
+        fieldset
+          label(for="email") Email:
+          input(type="email", id="email", name="email", required)
+          label(for="password") Senha:
+          input(type="password", id="password", name="password", required)
+          button.pure-button.pure-button-primary(id="submit") Entrar
+        p#login-message
+  script(type="module" src="/js/authentication.js")
