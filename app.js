@@ -1,12 +1,16 @@
+//importamos o framework web para Node.js express
 const express = require("express");
+//módulo que fornece funcionalidades de criptografia.
 const crypto = require("crypto");
+//Criando a instância do aplicativo Express. App é essencialp para a aplicação
 const app = express();
-
-app.use(express.static("./public")); //Define o local dos arquivos estáticos
-app.set("view engine", "pug"); //Define o motor de renderizacao das minhas paginas dinamicas
-app.set("views", "./views"); //Define o local onde estão as minhas páginas dinâmicas
-app.engine("pug", require("pug").__express);
-
+//Define o local dos arquivos estáticos como HTML, CSS, imagens e JavaScript
+app.use(express.static("./public"));
+//Define o motor de renderizacao das paginas dinamicas
+app.set("view engine", "pug");
+//Define o local onde estão as minhas páginas dinâmicas
+app.set("views", "./views");
+//middleware é usado para interpretar dados de formulários enviados via POST
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -16,13 +20,13 @@ const users = [
         uid: 1,
         name: "Emanuel Freitas",
         email: "emanuel@example.com",
-        password: "emanuel123",
+        password: "senha123",
     },
     {
         uid: 2,
         name: "Ariana Grande",
-        email: "ariana.grande@example.com",
-        password: "socorror123",
+        email: "grande@example.com",
+        password: "senha456",
     },
 ];
 
@@ -38,6 +42,7 @@ function autenticador(email, password) {
             users[count].email === email &&
             users[count].password === password
         ) {
+            //Chama a função  para criar um token de autenticação para o usuario autenticado.
             token = gerarToken(users[count]);
             return { user: users[count], authToken: token };
         }
@@ -47,10 +52,11 @@ function autenticador(email, password) {
 
 // Função para gerar um token baseado nas informações do usuário
 function gerarToken(user) {
+    //String basica é criada juntando o id o email e a data em millisegundos
     const tokenBase = `${user.uid}-${user.email}-${Date.now()}`;
-    return crypto.createHash("sha256").update(tokenBase).digest("hex"); //Cria um hash SHA-256 com o token base
+    //Converte o resultado do hash para uma representação hexadecimal,
+    return crypto.createHash("sha256").update(tokenBase).digest("hex");
 }
-
 // Middleware de autenticação
 function authMiddleware(req, res, next) {
     const { authToken } = req.query;
@@ -65,7 +71,7 @@ function authMiddleware(req, res, next) {
     }
 }
 
-//Rota principal: wwww.exemplo.br/
+//Rota principal
 app.get("/", (_, res) => {
     res.render("login");
 });
@@ -127,20 +133,6 @@ const produtos = [
             "Monitor LG UltraWide 34'', resolução 2560x1080, tecnologia IPS, ideal para multitarefa e edição de vídeo.",
         preco: 1499.99,
     },
-    {
-        id: 5,
-        nome: "Headset",
-        descricao:
-            "Headset Gamer HyperX Cloud II, som surround 7.1, microfone removível, estrutura em alumínio.",
-        preco: 499.99,
-    },
-    {
-        id: 6,
-        nome: "Impressora",
-        descricao:
-            "Impressora Multifuncional HP DeskJet 3776, com Wi-Fi, impressão, cópia e digitalização, compatível com smartphones e tablets.",
-        preco: 399.99,
-    },
 ];
 
 // Rota protegida - Produtos
@@ -152,12 +144,33 @@ app.get("/produtos", authMiddleware, (req, res) => {
 app.get("/cadastro", authMiddleware, (req, res) => {
     res.render("cadastro", { authToken: session.authToken });
 });
-
+//Define uma rota que aceita requisições POST no caminho /cadastro. Antes de executar a lógica do callback, a função authMiddleware é chamada para verificar se o usuário está autenticado.
+app.post("/cadastro", authMiddleware, (req, res) => {
+    //Extrai os campos nome, descricao e preco do corpo da requisição
+    const { nome, descricao, preco } = req.body;
+    //Cria um novo objeto novoProduto
+    const newProduto = {
+        id: produtos.length + 1,
+        nome,
+        descricao,
+        preco: parseFloat(preco),
+    };
+    //Adicionando o novo Produto
+    produtos.push(newProduto);
+    //pós adicionar o produto, a resposta redireciona o usuário para a rota /produtos, incluindo o authToken
+    res.redirect(`/produtos?authToken=${session.authToken}`);
+});
+// Rota para Logout
+app.get("/logout", (req, res) => {
+    // Limpa a sessão do usuário
+    session = {};
+    res.redirect("/"); // Redireciona para a página de login
+});
 // Iniciar o servidor
 const server = app.listen(3000, "0.0.0.0", () => {
     const host = server.address().address;
     const port = server.address().port;
     console.log(
-        `Aplicação Emanuel Store está rodando no endereço IP ${host} e na porta ${port}`,
+        `Aplicação  está rodando no endereço IP ${host} e na porta ${port}`,
     );
 });

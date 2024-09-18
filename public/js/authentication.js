@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {//É ativado quando a página é completamente carregada no navegador
+document.addEventListener("DOMContentLoaded", () => {
+    //É ativado quando a página é completamente carregada no navegador
     const loginForm = document.getElementById("loginForm");
     const loginMessage = document.getElementById("login-message");
 

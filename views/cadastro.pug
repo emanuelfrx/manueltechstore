@@ -3,7 +3,7 @@ extends layout2
 block content
   .content
     h1 Cadastro de Produto
-    form.pure-form.pure-form-stacked(action="/cadastro-produto", method="POST")
+    form.pure-form.pure-form-stacked(method="POST")
       fieldset
         label(for="nome") Nome do Produto:
         input(type="text", id="nome", name="nome", required)

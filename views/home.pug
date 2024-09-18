@@ -2,12 +2,14 @@ extends layout2
 
 block content
   .content
+   .banner
     h1 Manu Store Equipamentos
     h3 Seja bem-vindes, #{user.name}
+    img(src='../images/banner.jpg', alt='Banner da Manu Store')
     if produtos.length
-     .card-produtos
+     .card-produtos-home
       each produto in produtos
-        .card-produto
+        .card-produto-home
           h3= produto.nome
           p Descrição: #{produto.descricao}
           p Preço: R$ #{produto.preco}

@@ -120,7 +120,7 @@ main {
 .error {
     color: red;
 }
-.card-produtos {
+.card-produtos , .card-produtos-home{
     display: flex;
     /* quando o conteúdo atingir o limite da borda, os cards irão para a borda de baixo  */
     flex-wrap: wrap;
@@ -141,8 +141,20 @@ main {
     transition: transform 0.2s ease-in-out;
     font-size: 20px;
 }
+.card-produto-home {
+    background-color: #942e2e;
+    border: 1px solid #000000;
+    padding: 1em;
+    border-radius: 8px;
+    width: 400px;
+    height:300px;
+    /*criando uma animação que vai aumentar de tamanho sempre que passar a mão sobre o card  */
+    transition: transform 0.2s ease-in-out;
+    font-size: 20px;
+    color:white
+}
 
-.card-produto h3, .card-produto h4 {
+.card-produto h3,.card-produto h4 {
     color: white;
 }
 
@@ -152,6 +164,16 @@ main {
     ;
 }
 
-.card-produto:hover {
+.card-produto:hover, .card-produto-home:hover{
     transform: scale(1.05);
+}
+.banner {
+  width:100%;/* O banner ocupa toda a largura disponível */
+ /* Defina uma altura fixa para o banner */
+/* Oculta qualquer parte da imagem que exceda o contêiner */
+}
+img {
+  width: 100%; /* A imagem ocupa toda a largura do banner */
+  height: 300px; /* A imagem ocupa toda a altura do banner */
+  object-fit: cover; /* A imagem se ajusta ao tamanho do contêiner, cortando o que exceder */
 }

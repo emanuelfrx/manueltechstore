@@ -2,7 +2,7 @@
   "name": "emanueltech",
   "version": "1.0.0",
   "description": "Loja de equipamentos de Ti",
-  "main": "app.js",
+  "main": "node ./src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,8 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "express-session": "^1.18.0",
+    "firebase": "^10.13.1",
     "firebase-admin": "^12.5.0",
     "pug": "^3.0.3"
   }
