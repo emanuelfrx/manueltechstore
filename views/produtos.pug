@@ -2,12 +2,16 @@ extends layout2
 
 block content
   .content
-    h1 Produtos Disponíveis
+    h1 Produtos disponíveis
+    h3 Aqui estão disponiveis os principais produtos da nossa loja
     if produtos.length
+     .card-produtos
       each produto in produtos
-        .produto
-          h3= produto.nome
+        .card-produto
+          h4= produto.nome
           p Descrição: #{produto.descricao}
           p Preço: R$ #{produto.preco}
     else
       p Nenhum produto disponível no momento.
+    .button-container
+     a.pure-menu-link(href=`/cadastro?authToken=${authToken}`) Cadastro

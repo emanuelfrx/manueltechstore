@@ -2,13 +2,17 @@ extends layout2
 
 block content
   .content
-    h1 Produtos Disponíveis
+    h1 Manu Store Equipamentos
     h3 Seja bem-vindes, #{user.name}
     if produtos.length
+     .card-produtos
       each produto in produtos
-        .produto
+        .card-produto
           h3= produto.nome
           p Descrição: #{produto.descricao}
           p Preço: R$ #{produto.preco}
     else
       p Nenhum produto disponível no momento.
+
+    .button-container
+      a.pure-menu-link(href=`/cadastro?authToken=${authToken}`) Cadastro

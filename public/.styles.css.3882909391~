@@ -38,7 +38,6 @@ footer{
     color: white;
 }
 .pure-menu-link:hover{
-    background:white;
     color:#991a1a;
 }
 header .pure-menu, footer .footer-content {
@@ -74,47 +73,26 @@ main {
 .pure-button {
     background-color: #d61f1f;
     color: white;
-    padding: 1em 2em;
+    padding: 0.5em 2em;
     border-radius: 5px;
     text-decoration: none;
-    width:20vw;
-  
+    width:40%;
    
 }
-.button-container{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-}
-.pure-button-primary , .button-container a{
+
+.pure-button-primary {
     background: #bd0000;
-    color: #ffffff;
+    color: white;
     border-radius: 5px;
-    border:1px solid balck;
-    margin:1em;
-    width:auto;
-    font-size: 20px;
-    text-align:center;
-  
-    
-   
+    font-size: 100%;
 }
-.button-container a:hover{
-    background: #e4d8d8;
-    color: #bd0000;
-    font-style:bold;
-}
+
 .is-center {
     text-align: center;
 }
 
 .content {
     margin-top: 1em;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
 }
 
 .error {
@@ -124,31 +102,25 @@ main {
     display: flex;
     /* quando o conteúdo atingir o limite da borda, os cards irão para a borda de baixo  */
     flex-wrap: wrap;
-    gap: 20px;
-    align-items:center;
-    justify-content:center;
-    margin: 2em;
+    gap: 40px;
 }
 
 .card-produto {
-    background-color: #942e2e;
+    background-color: #920c0c;
     border: 1px solid #000000;
-    padding: 1em;
+    padding: 2em;
     border-radius: 8px;
     width: 400px;
-    height:400px;
     /*criando uma animação que vai aumentar de tamanho sempre que passar a mão sobre o card  */
     transition: transform 0.2s ease-in-out;
-    font-size: 20px;
 }
 
-.card-produto h3, .card-produto h4 {
+.card-produto h3 {
     color: white;
 }
 
 .card-produto p {
     color: #decece;
-    font-size: 16px;
     ;
 }
 
