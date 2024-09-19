@@ -58,8 +58,8 @@ function verificarAutenticacao(req, res, next) {
 // Rota de produtos protegida
 app.get("/produtos", verificarAutenticacao, async (req, res) => {
     try {
-        const produtosCollection = collection(db, "produtos");
-        const produtosSnapshot = await getDocs(produtosCollection);
+        const produtosCollection = db.collection("produtos"); // Mudança aqui
+        const produtosSnapshot = await produtosCollection.get(); // Mudança aqui
         const produtos = produtosSnapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),

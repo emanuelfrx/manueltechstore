@@ -1,8 +1,7 @@
-const admin = require("firebase-admin");
-
-const serviceAccount = require("./minhaChave.json");
-
 // Configuração do Firebase (pegue essas informações do Firebase Console)
+const { getFirestore, collection, getDocs } = require("firebase/firestore");
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+
 const firebaseConfig = {
   apiKey: "AIzaSyBrajs_b3rqdh9KnnCr3D5ESltjRxZ122o",
   authDomain: "auth-7f0a8.firebaseapp.com",
@@ -14,7 +13,7 @@ const firebaseConfig = {
 
 // Inicializar Firebase
 firebase.initializeApp(firebaseConfig);
-const db = getFirestore();
+const db = getFirestore(firebaseApp);
 // Função para obter produtos
 async function obterProdutos() {
   const produtosCollection = collection(db, "produtos");
