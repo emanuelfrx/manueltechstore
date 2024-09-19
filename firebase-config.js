@@ -8,5 +8,5 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://auth-7f0a8.firebaseio.com",
 });
-const db = admin.firestore(); // Inicializa o Firestore
-module.exports = { admin, db };
+
+module.exports = admin;

@@ -1,7 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const path = require("path");
-const { admin, db } = require("./firebase-config");
+const admin = require("./firebase-config"); // Firebase Admin SDK
 const {
     getFirestore,
     collection,
@@ -9,8 +9,8 @@ const {
 } = require("firebase-admin/firestore");
 
 const app = express();
+const db = getFirestore();
 
-// Importa admin e db
 app.use(
     session({
         secret: "seu-segredo-de-sessao",
@@ -36,54 +36,35 @@ app.get("/login", (req, res) => {
     res.render("login");
 });
 
-// Rota de login (POST)
+// Rota de login (POST) - para criar a sessão
 app.post("/login", (req, res) => {
-    const { email, password } = req.body;
+    const { email } = req.body;
 
-    // Autenticar o usuário com Firebase Admin SDK
-    admin
-        .auth()
-        .getUserByEmail(email)
-        .then((userRecord) => {
-            // Usuário autenticado, salvar na sessão
-            req.session.user = { email: userRecord.email, uid: userRecord.uid };
-            res.redirect("/produtos");
-        })
-        .catch((error) => {
-            res.render("login", {
-                error: "Falha ao fazer login: " + error.message,
-            });
-        });
+    // Armazena o email na sessão
+    req.session.user = { email };
+    // res.status(200).send("Usuário autenticado"); // Resposta ao cliente
+    res.redirect("/produtos");
 });
 
 // Middleware para verificar se o usuário está autenticado
 function verificarAutenticacao(req, res, next) {
     if (req.session.user) {
-        return res.redirect("/produtos"); // Redireciona para produtos se já autenticado
+        next(); // Usuário autenticado, prossegue
     } else {
-        next(); // Redireciona para login se não autenticado
+        res.redirect("/login"); // Redireciona para login se não autenticado
     }
 }
 
+// Rota de produtos protegida
 app.get("/produtos", verificarAutenticacao, async (req, res) => {
     try {
-        const produtosCollection = db.collection("produtos"); // Acesse a coleção a partir da instância db
-        const produtosSnapshot = await produtosCollection.get(); // Obtenha os documentos
-
-        if (produtosSnapshot.empty) {
-            console.log("Nenhum produto encontrado.");
-            return res.render("produtos", {
-                user: req.session.user,
-                produtos: [],
-            });
-        }
-
+        const produtosCollection = collection(db, "produtos");
+        const produtosSnapshot = await getDocs(produtosCollection);
         const produtos = produtosSnapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
         }));
 
-        console.log("Produtos obtidos:", produtos);
         res.render("produtos", { user: req.session.user, produtos });
     } catch (error) {
         console.error("Erro ao obter produtos:", error);
@@ -99,5 +80,5 @@ app.get("/logout", (req, res) => {
 });
 
 app.listen(3000, () => {
-    console.log("Emanuel TECH STORE rodando na porta 3000");
+    console.log("Servidor rodando na porta 3000");
 });
