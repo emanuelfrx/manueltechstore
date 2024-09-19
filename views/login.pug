@@ -2,18 +2,17 @@ extends layout
 
 block content
   .content
-    h1 Bem-vindo à Emanuel Store
-
-    // Seção de Login
-    .login-section
-      h2 Login
-      form.pure-form.pure-form-stacked(id="loginForm")
-        fieldset
-          label(for="email") Email:
-          input(type="email", id="email", name="email", required)
-          label(for="password") Senha:
-          input(type="password", id="password", name="password", required)
-          button.pure-button.pure-button-primary(id="submit") Entrar
-        p#login-message
-        
-  script(type="module" src="./js/authentication.js")
+    .login-container
+      .login-box
+        h1 Login
+        form.pure-form.pure-form-stacked(action="/login", method="POST")
+          .input-group
+            label(for="email") Email
+            input(type="email", id="email", name="email", placeholder="Digite seu e-mail")
+          .input-group
+            label(for="password") Senha
+            input(type="password", id="password", name="password", placeholder="Digite sua senha")
+          .input-group
+            button(type="submit") Entrar
+        p.registrar Não tem uma conta?
+          a(href="/register") Registre-se
