@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Moderustic:wght@300..800&display=swap');
 
-
 * {
     box-sizing: border-box;
 }
@@ -12,13 +11,7 @@ body {
     font-size: 1.1em;
     margin: 0;
     font-family: "Quicksand", sans-serif;
-    font-optical-sizing: auto;
     font-weight: 400;
-    font-style: normal;
-}
-
-header {
-    color: white;
 }
 
 header,
@@ -33,7 +26,6 @@ footer {
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-    height: auto;
 }
 
 .pure-menu-link {
@@ -57,35 +49,34 @@ footer a {
 }
 
 main {
-
-    margin: 2em auto;
+    margin: 0 auto;
     padding: 0 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
 }
-
 
 .pure-form input[type] {
     border: 2px solid #a70202;
-    box-shadow: none;
     font-size: 100%;
     width: 100%;
     margin-bottom: 1em;
     padding: 0.5em;
 }
 
-.pure-button {
+.pure-button,
+.pure-button-primary,
+.button-container a {
     background-color: #d61f1f;
     color: white;
     padding: 1em 2em;
     border-radius: 5px;
     text-decoration: none;
-    width: 20vw;
-
-
+    width: auto;
+    margin: 1em;
+    font-size: 20px;
+    text-align: center;
 }
 
 .button-container {
@@ -95,25 +86,9 @@ main {
     justify-content: center;
 }
 
-.pure-button-primary,
-.button-container a {
-    background: #bd0000;
-    color: #ffffff;
-    border-radius: 5px;
-    border: 1px solid balck;
-    margin: 1em;
-    width: auto;
-    font-size: 20px;
-    text-align: center;
-
-
-
-}
-
 .button-container a:hover {
     background: #e4d8d8;
     color: #bd0000;
-    font-style: bold;
 }
 
 .is-center {
@@ -131,11 +106,14 @@ main {
 .error {
     color: red;
 }
+.error-message {
+    color: red; /* Cor da mensagem de erro */
+    margin-bottom: 15px; /* Espaçamento inferior */
+}
 
 .card-produtos,
 .card-produtos-home {
     display: flex;
-    /* quando o conteúdo atingir o limite da borda, os cards irão para a borda de baixo  */
     flex-wrap: wrap;
     gap: 20px;
     align-items: center;
@@ -143,29 +121,23 @@ main {
     margin: 2em;
 }
 
-.card-produto {
+.card-produto,
+.card-produto-home {
     background-color: #942e2e;
-    border: 1px solid #000000;
     padding: 1em;
     border-radius: 8px;
-    width: 400px;
-    height: 400px;
-    /*criando uma animação que vai aumentar de tamanho sempre que passar a mão sobre o card  */
     transition: transform 0.2s ease-in-out;
-    font-size: 20px;
+    color: white; /* Adiciona cor ao texto da card-produto-home */
+}
+
+.card-produto {
+    width: 400px;
+    height: auto;
 }
 
 .card-produto-home {
-    background-color: #942e2e;
-    border: 1px solid #000000;
-    padding: 1em;
-    border-radius: 8px;
     width: 400px;
-    height: 300px;
-    /*criando uma animação que vai aumentar de tamanho sempre que passar a mão sobre o card  */
-    transition: transform 0.2s ease-in-out;
-    font-size: 20px;
-    color: white
+    height: auto;
 }
 
 .card-produto h3,
@@ -176,7 +148,6 @@ main {
 .card-produto p {
     color: #decece;
     font-size: 16px;
-    ;
 }
 
 .card-produto:hover,
@@ -184,18 +155,3 @@ main {
     transform: scale(1.05);
 }
 
-.banner {
-    width: 100%;
-    /* O banner ocupa toda a largura disponível */
-    /* Defina uma altura fixa para o banner */
-    /* Oculta qualquer parte da imagem que exceda o contêiner */
-}
-
-img {
-    width: 100%;
-    /* A imagem ocupa toda a largura do banner */
-    height: 300px;
-    /* A imagem ocupa toda a altura do banner */
-    object-fit: cover;
-    /* A imagem se ajusta ao tamanho do contêiner, cortando o que exceder */
-}

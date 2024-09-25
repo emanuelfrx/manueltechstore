@@ -2,19 +2,18 @@ extends layout2
 
 block content
   .content
-   .banner
-    h1 Manu Store Equipamentos
-    h3 Seja bem-vindes, #{user.name}
-    img(src='../images/banner.jpg', alt='Banner da Manu Store')
+   h1 Boas-vindas, #{nome}!
+   p Esta é a sua página inicial. Aqui você pode ver suas informações e navegar pelo sistema.
+
     if produtos.length
-     .card-produtos-home
-      each produto in produtos
-        .card-produto-home
-          h3= produto.nome
-          p Descrição: #{produto.descricao}
-          p Preço: R$ #{produto.preco}
+      .card-produtos
+        each produto in produtos
+          .card-produto
+            h4= produto.nome
+            p Descrição: #{produto.descricao}
+            p Preço: R$ #{produto.preco}
     else
       p Nenhum produto disponível no momento.
-
+    
     .button-container
       a.pure-menu-link(href=`/cadastro?authToken=${authToken}`) Cadastro

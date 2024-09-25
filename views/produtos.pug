@@ -3,15 +3,24 @@ extends layout2
 block content
   .content
     h1 Produtos disponíveis
-    h3 Aqui estão disponiveis os principais produtos da nossa loja
+    h3 Aqui estão disponíveis os principais produtos da nossa loja
+
     if produtos.length
-     .card-produtos
-      each produto in produtos
-        .card-produto
-          h4= produto.nome
-          p Descrição: #{produto.descricao}
-          p Preço: R$ #{produto.preco}
+      .card-produtos
+        each produto in produtos
+          .card-produto
+            h4= produto.nome
+            p Descrição: #{produto.descricao}
+            p Preço: R$ #{produto.preco}
+            
+            .button-container
+              a.pure-menu-link(href=`/editar/${produto.id}`) Editar
+              
+              form(action=`/excluir/${produto.id}`, method="POST", onsubmit="return confirm('Tem certeza que deseja excluir este produto?');")
+                button.pure-button.pure-button-error(type="submit") Excluir
+
     else
       p Nenhum produto disponível no momento.
+    
     .button-container
-     a.pure-menu-link(href=`/cadastro?authToken=${authToken}`) Cadastro
+      a.pure-menu-link(href=`/cadastro?authToken=${authToken}`) Cadastro
